@@ -1,0 +1,19 @@
+{
+	"name": "manisha/fetch-api-data",
+	"description": "Retrieves data from a remote API endpoint, and makes that data accessible from an API endpoint on the WordPress site",
+	"type": "wordpress-plugin",
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^2.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"FetchApiData\\": "src/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}
