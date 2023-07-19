@@ -1,13 +1,15 @@
 <?php
+/**
+ * Class MMApiDataTab file.
+ */
 
-namespace FetchApiData\Admin;
+namespace ManishaMakhija\Admin;
 
 use WPMailSMTP\Admin\PageAbstract;
-use FetchApiData\CreateEndpoint;
+use ManishaMakhija\ApiInvoker;
 
 /**
- * Class MMApiDataTab file
- * Displays remote API data.
+ * Displays remote API data in tab.
  */
 class MMApiDataTab extends PageAbstract {
 
@@ -16,7 +18,7 @@ class MMApiDataTab extends PageAbstract {
 	 *
 	 * @var string
 	 */
-	protected $slug = 'mm-api-data';
+	protected $slug = 'manisha-makhija';
 
 	/**
 	 * Tab priority.
@@ -32,7 +34,7 @@ class MMApiDataTab extends PageAbstract {
 	 */
 	public function get_label() {
 
-		return esc_html__( 'Miusage Data', 'manisha-makhija' );
+		return esc_html__( 'Manisha Makhija', 'manisha-makhija' );
 	}
 
 	/**
@@ -61,15 +63,15 @@ class MMApiDataTab extends PageAbstract {
 
 		wp_enqueue_style(
 			'mm-admin-api-data',
-			MM_PLUGIN_URL . '/assets/css/mm-admin-api-data.css',
+			MM_PLUGIN_URL . '/assets/css/mm-admin-api-data.min.css',
 			array( 'wp-mail-smtp-admin' ),
 			MM_API_DATA_VERSION
 		);
 
 		wp_enqueue_script(
 			'mm-admin-api-data',
-			MM_PLUGIN_URL . '/assets/js/mm-admin-api-data.js',
-			array( 'jquery', 'wp-mail-smtp-admin' ),
+			MM_PLUGIN_URL . '/assets/js/mm-admin-api-data.min.js',
+			array( 'wp-mail-smtp-admin' ),
 			MM_API_DATA_VERSION,
 			false
 		);
@@ -93,42 +95,29 @@ class MMApiDataTab extends PageAbstract {
 	 * Output HTML of the API response data.
 	 */
 	public function display() {
-		$data     = CreateEndpoint::get_accessible_API_data( CreateEndpoint::API_URL );
+		$data     = ApiInvoker::get_accessible_api_data( ApiInvoker::API_URL );
 		$is_error = is_wp_error( $data ); ?>
 		<div class="mm-admin-api-data-section mm-admin-api-data-section-squashed">
 			<h1 class="centered">
 				<strong>
 					<?php
-					if ( $is_error ) { ?>
-						<span class="mm-error"><?php 
-							printf( /* Translators: %s - error message. */ 
-								__( 'Error! %s', 'manisha-makhija' ), esc_html( $data->get_error_message() )
-							); ?>
+					if ( $is_error ) {
+						?>
+						<span class="mm-error">
+						<?php
+							printf( /* Translators: %s - error message. */
+								esc_html__( 'Error! %s', 'manisha-makhija' ),
+								esc_html( $data->get_error_message() )
+							);
+						?>
 						</span> 
-															 <?php
-																// printf(
-																// wp_kses( /* Translators: %s - error message. */
-																// __( '<span class="mm-error">Error! %s </span>', 'manisha-makhija' ),
-																// [
-																// 'span' => [
-																// 'class' => [],
-																// ],
-																// ]
-																// ),
-																// esc_html($data['message'])
-																// );
+						<?php
 					} else {
 						echo esc_html( $data['title'] );
 					}
-					// printf(
-					// /* translators: %s - plugin current license type. */
-					// esc_html__( 'The amazing Table', 'manisha-makhija' )
-
-					// );
 					?>
 				</strong>
 			</h1>
-
 		</div>
 
 		<?php if ( ! $is_error ) { ?>
@@ -136,7 +125,7 @@ class MMApiDataTab extends PageAbstract {
 			<?php
 			if ( isset( $data['data']->headers ) && ! empty( $data['data']->headers ) ) {
 				?>
-					<div class="mm-admin-api-data-section-hero-main mm-admin-columns">
+					<div class="mm-admin-api-data-section-hero-main mm-admin-columns"> 
 					<?php
 					foreach ( $data['data']->headers as $headers ) {
 						?>
@@ -173,7 +162,7 @@ class MMApiDataTab extends PageAbstract {
 										<p><?php echo esc_html( $rows->email ); ?></p>
 									</td>
 									<td class="mm-admin-column-20">
-										<p><?php echo date( 'j F, Y', $rows->date ); ?></p>
+										<p><?php echo esc_html( date( 'j F, Y', $rows->date ) ); ?></p>
 									</td>
 								</tr>
 								<?php
@@ -190,47 +179,7 @@ class MMApiDataTab extends PageAbstract {
 			</a>
 			<?php
 		}
-		?>
-
-
-			<!-- <div class="wp-mail-smtp-admin-about-section wp-mail-smtp-admin-about-section-hero">
-				<div class="wp-mail-smtp-admin-about-section-hero-main no-border">
-					<h3 class="call-to-action centered">
-						<a href="<?php echo esc_url( wp_mail_smtp()->get_upgrade_link( 'lite-vs-pro' ) ); ?>" target="_blank" rel="noopener noreferrer">
-							<?php esc_html_e( 'Get WP Mail SMTP Pro Today and Unlock all of these Powerful Features', 'wp-mail-smtp' ); ?>
-						</a>
-					</h3>
-
-					<p class="centered">
-						<?php
-						printf(
-							wp_kses( /* Translators: %s - discount value $50. */
-								__( 'Bonus: WP Mail SMTP Lite users get <span class="price-off">%s off regular price</span>, automatically applied at checkout.', 'wp-mail-smtp' ),
-								array(
-									'span' => array(
-										'class' => array(),
-									),
-								)
-							),
-							'$50'
-						);
-						?>
-					</p>
-				</div>
-			</div> -->
-		<?php
 	}
-
-
-	// public function getAPIData(){
-	// $remoteAPIObj = new CreateEndpoint();
-	// $apiData = $remoteAPIObj->retrieveRemoteData(CreateEndpoint::API_URL);
-	// if ( !is_array($apiData) ){
-	// $apiDataArray = $remoteAPIObj->decodeApiData($apiData);
-	// return $apiDataArray;
-	// }
-	// return $apiData;
-	// }
 }
 
 

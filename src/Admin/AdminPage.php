@@ -1,27 +1,30 @@
 <?php
-namespace FetchApiData\Admin;
+/**
+ * Class AdminPage file.
+ */
 
-use FetchApiData\Admin\MMApiData;
-use FetchApiData\Admin\MMApiDataTab;
+namespace ManishaMakhija\Admin;
 
+use ManishaMakhija\Admin\MMApiData;
+use ManishaMakhija\Admin\MMApiDataTab;
+
+/**
+ * Admin Page for showing API data.
+ */
 class AdminPage {
 
+	/**
+	 * Init function.
+	 */
 	public function init() {
-		// if ( has_filter('wp_mail_smtp_admin_area_get_parent_pages') ){
-		// if ( function_exists( 'wp_mail_smtp' ) ) {
-		// if ( defined( 'WPMS_PLUGIN_VER' ) ) {
-		// include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		// var_dump(is_plugin_active( 'plugins/wp-mail-smtp/wp-mail-smtp.php' ));
-		// if ( is_plugin_active( MM_PLUGIN_FILE ) ) {
-		// Plugin is active
-		// }
 		add_action( 'admin_init', array( $this, 'mm_check_dependent_plugin' ) );
 		add_filter( 'wp_mail_smtp_admin_area_get_parent_pages', array( $this, 'mm_add_api_response_data_page' ), 10, 1 );
 		add_action( 'wp_ajax_mm_api_data_refresh_ajax', array( $this, 'mm_refresh_api_data_ajax' ) );
-		add_action( 'wp_ajax_no_priv_mm_api_data_refresh_ajax', array( $this, 'mm_refresh_api_data_ajax' ) );
-
 	}
 
+	/**
+	 * Ajax callback for refresh button functionality.
+	 */
 	public function mm_refresh_api_data_ajax() {
 		check_ajax_referer( 'mm-api-data', 'nonce' );
 		$obj = new MMApiDataTab();
@@ -30,17 +33,26 @@ class AdminPage {
 		wp_send_json( ob_get_clean() );
 	}
 
+	/**
+	 * Insertion of new page in WP SMTP mail plugin.
+	 *
+	 * @param  array $pages WP SMTP Mail plugin pages details.
+	 *
+	 * @return array $pages WP SMTP Mail plugin pages details.
+	 */
 	public function mm_add_api_response_data_page( $pages ) {
-
-		array_push( \WPMailSMTP\Admin\Area::$pages_registered, 'mm-api-data' );
-		$pages['mm-api-data'] = new MMApiData(
+		array_push( \WPMailSMTP\Admin\Area::$pages_registered, 'manisha-makhija' );
+		$pages['manisha-makhija'] = new MMApiData(
 			array(
-				'mm-api-data' => MMApiDataTab::class,
+				'manisha-makhija' => MMApiDataTab::class,
 			)
 		);
 		return $pages;
 	}
 
+	/**
+	 * Check if dependent plugin is active.
+	 */
 	public function mm_check_dependent_plugin() {
 
 		if ( ! defined( 'WPMS_PLUGIN_VER' ) ) {
@@ -48,7 +60,9 @@ class AdminPage {
 		}
 	}
 
-
+	/**
+	 * Display admin notice for non-activation of dependent plugin.
+	 */
 	public function mm_display_admin_notices() {
 		$notice = sprintf(
 			/* translators: 1: wp mail smtp plugin url */

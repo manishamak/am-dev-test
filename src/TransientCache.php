@@ -1,61 +1,57 @@
 <?php
+/**
+ * Class TransientCache file.
+ */
 
-declare(strict_types=1);
-namespace FetchApiData;
+namespace ManishaMakhija;
 
 /**
  * Manange cache data.
  **/
-class TransientCache
-{
+class TransientCache {
 
-    /**
-     * Transient key
-     *
-     * @var string
-     */
-    private $transientKey;
+	/**
+	 * Transient key.
+	 *
+	 * @var string
+	 */
+	private $transient_key;
 
-    /**
-     * TransientCache constructor
-     *
-     * @param string $transientKey
-     */
-    public function __construct(string $transientKey)
-    {
-        $this->transientKey = $transientKey;
-    }
+	/**
+	 * TransientCache constructor.
+	 *
+	 * @param string $transient_key  key using which cache data is stored.
+	 */
+	public function __construct( string $transient_key ) {
+		$this->transient_key = $transient_key;
+	}
 
+	/**
+	 * Set data in transient cache for 1 hour.
+	 *
+	 * @param  string $transient_data  Data to be stored in cache.
+	 */
+	public function add_transient_data( string $transient_data ) {
+		set_transient( $this->transient_key, $transient_data, HOUR_IN_SECONDS );
+	}
 
-    /**
-     * Set data in transient cache for the 1 hours.
-     *
-     * @param  string  $transientData  Data to be stored in cache
-     */
-    public function addTransientData(string $transientData)
-    {
-        set_transient($this->transientKey, $transientData, HOUR_IN_SECONDS);
-    }
+	/**
+	 * Get transient cache data.
+	 *
+	 * @return  string  $transient_data  Store cache data
+	 */
+	public function receive_transient_data() {
+		$transient_data = get_transient( $this->transient_key );
+		return $transient_data;
+	}
 
-    /**
-     * Get transient cache data.
-     *
-     * @return  string  $transientData  Store cache data
-     */
-    public function receiveTransientData()
-    {
-        $transientData = get_transient($this->transientKey);
-        return $transientData;
-    }
-
-    /**
-     * Clear transient cache data.
-     * 
-     * @return boolean $deleted true if deleted otherwise false.
-     */
-    public function removeTransientData()
-    {
-        $deleted = delete_transient($this->transientKey);
-        return $deleted;
-    }
+	/**
+	 * Clear transient cache data.
+	 *
+	 * @return boolean $deleted true if deleted otherwise false.
+	 */
+	public function remove_transient_data() {
+		$deleted = delete_transient( $this->transient_key );
+		return $deleted;
+	}
 }

@@ -1,4 +1,4 @@
-/* global mmApiData */
+/* global mmApiData, jQuery */
 
 ( function ( document, window, $ ) {
 	/*

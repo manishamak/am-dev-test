@@ -8,7 +8,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"FetchApiData\\": "src/"
+			"ManishaMakhija\\": "src/"
 		}
 	},
 	"config": {

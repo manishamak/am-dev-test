@@ -10,13 +10,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	const [ error, setError ] = useState( null );
 	const [ record, setRecord ] = useState( null );
 	const [ isLoaded, setIsLoaded ] = useState( false );
-	// const [ setColumnDisplayState ] = useState( {
-	// 	id: true,
-	// 	first_name: true,
-	// 	last_name: true,
-	// 	email: true,
-	// 	date: true,
-	// } );
 	const htmlStructure = [
 		<InspectorControls key="mm-api-data-display-block-inspector-controls">
 			<PanelBody
@@ -30,9 +23,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						setAttributes( {
 							id: value,
 						} );
-						// setColumnDisplayState( ( previousValue ) => {
-						// 	return { ...previousValue, id: value };
-						// } );
 					} }
 					checked={ attributes.id }
 				/>
@@ -42,9 +32,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						setAttributes( {
 							first_name: value,
 						} );
-						// setColumnDisplayState( ( previousValue ) => {
-						// 	return { ...previousValue, first_name: value };
-						// } );
 					} }
 					checked={ attributes.first_name }
 				/>
@@ -54,9 +41,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						setAttributes( {
 							last_name: value,
 						} );
-						// setColumnDisplayState( ( previousValue ) => {
-						// 	return { ...previousValue, last_name: value };
-						// } );
 					} }
 					checked={ attributes.last_name }
 				/>
@@ -66,9 +50,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						setAttributes( {
 							email: value,
 						} );
-						// setColumnDisplayState( ( previousValue ) => {
-						// 	return { ...previousValue, email: value };
-						// } );
 					} }
 					checked={ attributes.email }
 				/>
@@ -78,9 +59,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						setAttributes( {
 							date: value,
 						} );
-						// setColumnDisplayState( ( previousValue ) => {
-						// 	return { ...previousValue, date: value };
-						// } );
 					} }
 					checked={ attributes.date }
 				/>

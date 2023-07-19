@@ -1,10 +1,14 @@
 <?php
-namespace FetchApiData\Admin;
+/**
+ * Class MMApiData.
+ */
+
+namespace ManishaMakhija\Admin;
 
 use WPMailSMTP\Admin\ParentPageAbstract;
 
 /**
- * Class MMApiData.
+ * For adding API data page in WP SMTP Mail Plugin.
  */
 class MMApiData extends ParentPageAbstract {
 
@@ -13,14 +17,14 @@ class MMApiData extends ParentPageAbstract {
 	 *
 	 * @var string
 	 */
-	protected $default_tab = 'mm-api-data';
+	protected $default_tab = 'manisha-makhija';
 
 	/**
 	 * Slug of a page.
 	 *
 	 * @var string
 	 */
-	protected $slug = 'mm-api-data';
+	protected $slug = 'manisha-makhija';
 
 	/**
 	 * Link label of a page.
@@ -29,7 +33,7 @@ class MMApiData extends ParentPageAbstract {
 	 */
 	public function get_label() {
 
-		return esc_html__( 'Miusage Data', 'manisha-makhija' );
+		return esc_html__( 'Manisha Makhija', 'manisha-makhija' );
 	}
 
 	/**

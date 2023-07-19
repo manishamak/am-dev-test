@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manisha Makhija\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-05 18:17+0000\n"
+"POT-Creation-Date: 2023-04-06 21:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,20 +20,22 @@ msgstr ""
 msgid "API based plugin challenge"
 msgstr ""
 
-#: src/WP_CLI/MmWpcli.php:22
+#: src/WP_CLI/MmWpcli.php:23
 msgid "Cache has been cleared."
 msgstr ""
 
-#: src/WP_CLI/MmWpcli.php:24
+#: src/WP_CLI/MmWpcli.php:25
 msgid "Either there is no cache or an error has occurred."
 msgstr ""
 
-#: src/Admin/MMApiDataTab.php:112
+#. %s - error message.
+#: src/Admin/MMApiDataTab.php:109
 #, php-format
 msgid "Error! %s"
 msgstr ""
 
-#: src/Block/edit.js:115
+#. %s - error message.
+#: src/Block/edit.js:89
 #, javascript-format
 msgid "ERROR: %s"
 msgstr ""
@@ -42,61 +44,58 @@ msgstr ""
 msgid "https://profiles.wordpress.org/manishamakhija/"
 msgstr ""
 
-#: src/Admin/MMApiDataTab.php:88
+#: src/Admin/MMApiDataTab.php:82
 msgid "Loading"
 msgstr ""
 
-#: src/Block/edit.js:117
-msgid "Loading response..."
+#: src/Block/edit.js:95
+msgid "Loading response…"
 msgstr ""
 
-#: src/Block/edit.js:19
+#: src/Block/edit.js:16
 msgid "Manage Table columns"
 msgstr ""
 
 #. Name of the plugin
 #. Author of the plugin
+#: src/Admin/MMApiData.php:36 src/Admin/MMApiDataTab.php:37
 msgid "Manisha Makhija"
 msgstr ""
 
-#: src/Admin/MMApiData.php:33 src/Admin/MMApiDataTab.php:39
-msgid "Miusage Data"
-msgstr ""
-
-#: src/CreateEndpoint.php:179
+#: src/ApiInvoker.php:122
 msgid "No data found"
 msgstr ""
 
-#: src/Block/APIDataDisplayBlock.php:33 src/Block/edit.js:122
+#: src/Block/APIDataDisplayBlock.php:50 src/Block/edit.js:100
 msgid "No data found in API"
 msgstr ""
 
-#: src/Admin/MMApiDataTab.php:179
+#: src/Admin/MMApiDataTab.php:178
 msgid "Refresh"
 msgstr ""
 
-#: src/Block/edit.js:79
+#: src/Block/edit.js:57
 msgid "Show Date"
 msgstr ""
 
-#: src/Block/edit.js:65
+#: src/Block/edit.js:48
 msgid "Show Email"
 msgstr ""
 
-#: src/Block/edit.js:37
+#: src/Block/edit.js:30
 msgid "Show First Name"
 msgstr ""
 
-#: src/Block/edit.js:23
+#: src/Block/edit.js:21
 msgid "Show ID"
 msgstr ""
 
-#: src/Block/edit.js:51
+#: src/Block/edit.js:39
 msgid "Show Last Name"
 msgstr ""
 
 #. 1: wp mail smtp plugin url
-#: src/Admin/AdminPage.php:54
+#: src/Admin/AdminPage.php:69
 #, php-format
 msgid ""
 "Some of the features of <strong> Manisha Makhija </strong> is dependent on "

@@ -9,8 +9,6 @@ Domain Path: /languages/
 Version: 1.0
  */
 
-declare(strict_types=1);
-
 // Check abspath exists or not.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,10 +31,10 @@ if ( ! defined( 'MM_API_DATA_VERSION' ) ) {
 }
 
 // Inclusion of main class.
-if ( file_exists( __DIR__ . '/vendor/autoload.php' ) && ! class_exists( 'FetchApiData\CreateEndpoint' ) ) {
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) && ! class_exists( 'ManishaMakhija\ApiInvoker' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
-if ( class_exists( 'FetchApiData\CreateEndpoint' ) ) {
-	$endpointObj = new FetchApiData\CreateEndpoint();
-	$endpointObj->init();
+if ( class_exists( 'ManishaMakhija\ApiInvoker' ) ) {
+	$apinvoker_obj = new ManishaMakhija\ApiInvoker();
+	$apinvoker_obj->init();
 }
